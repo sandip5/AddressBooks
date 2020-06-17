@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class ImplAddressBook implements IAddressBook {
     Scanner scanner = new Scanner(System.in);
     int counter = 0;
+    int indexOfPerson;
     static ArrayList<Person> persons = new ArrayList<Person>();
 
     public static void printPersonDetails(ArrayList<Person> persons) {
@@ -21,7 +22,7 @@ public class ImplAddressBook implements IAddressBook {
         System.out.println("-----------------------Open Address Book-----------------------");
             boolean close = false;
             while (!close) {
-                System.out.println("Select option: \n1.add\n2.print\n3.quit");
+                System.out.println("Select option: \n1.add\n2.print\n3.quit\n4.edit");
                 switch (scanner.nextInt()) {
                     case 1:
                         addPerson();
@@ -42,6 +43,10 @@ public class ImplAddressBook implements IAddressBook {
                         close = true;
                         System.out.println("Closing...");
                         break;
+                    case 4:
+
+                        editPerson();
+                        break;
                     default:
                         System.out.println("Invalid option");
                 }
@@ -61,7 +66,7 @@ public class ImplAddressBook implements IAddressBook {
             person.setMobile(scanner.nextLong());
             System.out.println("Enter address Details: ");
             Address address = new Address();
-            System.out.println("Enter address: ");
+            System.out.println("Enter country name: ");
             address.setAddressLocal(scanner.next());
             System.out.println("Enter city: ");
             address.setCity(scanner.next());
@@ -75,4 +80,41 @@ public class ImplAddressBook implements IAddressBook {
             System.out.println("Person added");
             counter++;
         }
+    @Override
+    public void editPerson() {
+        if (counter > 0) {
+            System.out.println("Enter Persons First name you want to edit:");
+            String searchFirstName = scanner.next();
+            indexOfPerson = 0;
+            boolean isFoundPerson = false;
+            for (int i = 0; i < persons.size(); i++) {
+                if (searchFirstName.equals(persons.get(i).getFirstname())) {
+                    isFoundPerson = true;
+                    indexOfPerson = i;
+                    break;
+                }
+            }
+            if (isFoundPerson) {
+
+                System.out.println("enter country name");
+                persons.get(indexOfPerson).getAddressObj().setAddressLocal(scanner.next());
+                System.out.println("enter new city name");
+                persons.get(indexOfPerson).getAddressObj().setCity(scanner.next());
+                System.out.println("enter new state name");
+                persons.get(indexOfPerson).getAddressObj().setState(scanner.next());
+                System.out.println("enter new zip");
+                persons.get(indexOfPerson).getAddressObj().setZip(scanner.nextInt());
+                System.out.println("enter new mobile number");
+                persons.get(indexOfPerson).setMobile(scanner.nextLong());
+
+                System.out.println();
+                System.out.println("Edit completed");
+
+            } else
+                System.out.println("No person found with this First Name1");
+        } else
+            System.out.println("There is no record to edit");
+
     }
+
+}
