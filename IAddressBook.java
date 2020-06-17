@@ -5,5 +5,6 @@ public interface IAddressBook {
     void openAddressBook();
     void editPerson();
     void deletePerson();
+    void sortByName();
 
 }
