@@ -23,7 +23,7 @@ public class ImplAddressBook implements IAddressBook {
         System.out.println("-----------------------Open Address Book-----------------------");
         boolean close = false;
         while (!close) {
-            System.out.println("Select option: \n1.add\n2.print\n3.quit\n4.edit\n5.delete\n6.sort by name");
+            System.out.println("Select option: \n1.add\n2.print\n3.quit\n4.edit\n5.delete\n6.sort by name\n7.sort by city\n8.sort by state\n9.sort by zip");
             switch (scanner.nextInt()) {
                 case 1:
                     addPerson();
@@ -45,7 +45,6 @@ public class ImplAddressBook implements IAddressBook {
                     System.out.println("Closing...");
                     break;
                 case 4:
-
                     editPerson();
                     break;
                 case 5:
@@ -53,6 +52,15 @@ public class ImplAddressBook implements IAddressBook {
                     break;
                 case 6:
                     sortByName();
+                    break;
+                case 7:
+                    sortByCity();
+                    break;
+                case 8:
+                    sortByState();
+                    break;
+                case 9:
+                    sortByZip();
                     break;
                 default:
                     System.out.println("Invalid option");
@@ -173,6 +181,54 @@ public class ImplAddressBook implements IAddressBook {
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Sorting is completed to see the result select print option");
+        } else
+            System.out.println("Less records to sort");
+    }
+    public void sortByCity(){
+        if (counter > 1) {
+            System.out.println("Sorting by City name is selected");
+            Collections.sort(persons, (e1, e2) -> String.valueOf(e1.getAddressObj().getCity())
+                    .compareTo(String.valueOf(e2.getAddressObj().getCity())));
+            System.out.println("Please wait...");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Sorting is completed to see the result select print option");
+        } else
+            System.out.println("Less records to sort");
+    }
+
+    public void sortByState(){
+        if (counter > 1) {
+            System.out.println("Sorting by state name is selected");
+            Collections.sort(persons, (e1, e2) -> String.valueOf(e1.getAddressObj().getState())
+                    .compareTo(String.valueOf(e2.getAddressObj().getState())));
+            System.out.println("Please wait...");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Sorting is completed to see the result select print option");
+        } else
+            System.out.println("Less records to sort");
+    }
+
+    public void sortByZip(){
+        if (counter > 1) {
+            System.out.println("Sorting by zip");
+            Collections.sort(persons, (e1, e2) -> String.valueOf(e1.getAddressObj().getZip())
+                    .compareTo(String.valueOf(e2.getAddressObj().getZip())));
+            System.out.println("Please wait...");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             System.out.println("Sorting is completed to see the result select print option");
