@@ -20,45 +20,59 @@ public class ImplAddressBook implements IAddressBook {
     @Override
     public void openAddressBook() {
         System.out.println("-----------------------Open Address Book-----------------------");
-            boolean close = false;
-            while (!close) {
-                System.out.println("Select option: \n1.add\n2.print\n3.quit\n4.edit\n5.delete");
-                switch (scanner.nextInt()) {
-                    case 1:
-                        addPerson();
-                        break;
-                    case 2:
-                        // print
-                        if (counter > 0) {
-                            System.out.println("Printing all records...");
+        boolean close = false;
+        while (!close) {
+            System.out.println("Select option: \n1.add\n2.print\n3.quit\n4.edit\n5.delete");
+            switch (scanner.nextInt()) {
+                case 1:
+                    addPerson();
+                    break;
+                case 2:
+                    // print
+                    if (counter > 0) {
+                        System.out.println("Printing all records...");
 
-                            ImplAddressBook.printPersonDetails(persons);
+                        ImplAddressBook.printPersonDetails(persons);
 
-                        } else
-                            System.out.println("There is no record to print...");
+                    } else
+                        System.out.println("There is no record to print...");
 
-                        break;
-                    case 3:
-                        // close
-                        close = true;
-                        System.out.println("Closing...");
-                        break;
-                    case 4:
+                    break;
+                case 3:
+                    // close
+                    close = true;
+                    System.out.println("Closing...");
+                    break;
+                case 4:
 
-                        editPerson();
-                        break;
-                    case 5:
-                        deletePerson();
-                        break;
-                    default:
-                        System.out.println("Invalid option");
-                }
+                    editPerson();
+                    break;
+                case 5:
+                    deletePerson();
+                    break;
+                default:
+                    System.out.println("Invalid option");
             }
-
         }
 
-        @Override
-        public void addPerson () {
+    }
+    @Override
+    public void addPerson() {
+
+        boolean isFoundPerson = true;
+        if (counter > 0) {
+            System.out.println("Enter Persons First name you want to edit:");
+            String searchFirstName = scanner.next();
+            indexOfPerson = 0;
+            for (int i = 0; i < persons.size(); i++) {
+                if (searchFirstName.equals(persons.get(i).getFirstname())) {
+                    isFoundPerson = false;
+                    indexOfPerson = i;
+                    break;
+                }
+            }
+        }
+        if (isFoundPerson) {
             System.out.println("Add person details...");
             Person person = new Person();
             System.out.println("Enter person first name: ");
@@ -82,7 +96,11 @@ public class ImplAddressBook implements IAddressBook {
             System.out.println();
             System.out.println("Person added");
             counter++;
+        } else {
+            System.out.println("Duplicate entry of person's name not allowed...");
         }
+    }
+
     @Override
     public void editPerson() {
         if (counter > 0) {
