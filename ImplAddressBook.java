@@ -1,6 +1,7 @@
 package com.bridgelab.addressbook;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class ImplAddressBook implements IAddressBook {
@@ -22,7 +23,7 @@ public class ImplAddressBook implements IAddressBook {
         System.out.println("-----------------------Open Address Book-----------------------");
         boolean close = false;
         while (!close) {
-            System.out.println("Select option: \n1.add\n2.print\n3.quit\n4.edit\n5.delete");
+            System.out.println("Select option: \n1.add\n2.print\n3.quit\n4.edit\n5.delete\n6.sort by name");
             switch (scanner.nextInt()) {
                 case 1:
                     addPerson();
@@ -50,18 +51,22 @@ public class ImplAddressBook implements IAddressBook {
                 case 5:
                     deletePerson();
                     break;
+                case 6:
+                    sortByName();
+                    break;
                 default:
                     System.out.println("Invalid option");
             }
         }
 
     }
+
     @Override
     public void addPerson() {
 
         boolean isFoundPerson = true;
         if (counter > 0) {
-            System.out.println("Enter Persons First name you want to edit:");
+            System.out.println("Enter Persons First name:");
             String searchFirstName = scanner.next();
             indexOfPerson = 0;
             for (int i = 0; i < persons.size(); i++) {
@@ -133,6 +138,7 @@ public class ImplAddressBook implements IAddressBook {
         } else
             System.out.println("There is no record to edit");
     }
+
     @Override
     public void deletePerson() {
         if (counter > 0) {
@@ -156,5 +162,21 @@ public class ImplAddressBook implements IAddressBook {
                 System.out.println("No person found with this number");
         } else
             System.out.println("No records to delete");
+    }
+
+    @Override
+    public void sortByName() {
+        if (counter > 1) {
+            System.out.println("Sorting by Last name is selected");
+            Collections.sort(persons, (e1, e2) -> e1.getFirstname().compareTo(e2.getFirstname()));
+            System.out.println("Please wait...");
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Sorting is completed to see the result select print option");
+        } else
+            System.out.println("Less records to sort");
     }
 }
