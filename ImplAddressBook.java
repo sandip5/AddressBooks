@@ -22,7 +22,7 @@ public class ImplAddressBook implements IAddressBook {
         System.out.println("-----------------------Open Address Book-----------------------");
             boolean close = false;
             while (!close) {
-                System.out.println("Select option: \n1.add\n2.print\n3.quit\n4.edit");
+                System.out.println("Select option: \n1.add\n2.print\n3.quit\n4.edit\n5.delete");
                 switch (scanner.nextInt()) {
                     case 1:
                         addPerson();
@@ -46,6 +46,9 @@ public class ImplAddressBook implements IAddressBook {
                     case 4:
 
                         editPerson();
+                        break;
+                    case 5:
+                        deletePerson();
                         break;
                     default:
                         System.out.println("Invalid option");
@@ -95,7 +98,6 @@ public class ImplAddressBook implements IAddressBook {
                 }
             }
             if (isFoundPerson) {
-
                 System.out.println("enter country name");
                 persons.get(indexOfPerson).getAddressObj().setAddressLocal(scanner.next());
                 System.out.println("enter new city name");
@@ -106,15 +108,36 @@ public class ImplAddressBook implements IAddressBook {
                 persons.get(indexOfPerson).getAddressObj().setZip(scanner.nextInt());
                 System.out.println("enter new mobile number");
                 persons.get(indexOfPerson).setMobile(scanner.nextLong());
-
                 System.out.println();
                 System.out.println("Edit completed");
-
             } else
-                System.out.println("No person found with this First Name1");
+                System.out.println("No person found with this First Name");
         } else
             System.out.println("There is no record to edit");
-
+    }
+    @Override
+    public void deletePerson() {
+        if (counter > 0) {
+            System.out.println("Enter Persons First Name you want to delete:");
+            String searchFirstName = scanner.next();
+            indexOfPerson = 0;
+            boolean isFoundPerson = false;
+            for (int i = 0; i < persons.size(); i++) {
+                if (searchFirstName.equals(persons.get(i).getFirstname())) {
+                    isFoundPerson = true;
+                    indexOfPerson = i;
+                    break;
+                }
+            }
+            if (isFoundPerson) {
+                persons.remove(indexOfPerson);
+                counter--;
+                System.out.println();
+                System.out.println("Delete completed");
+            } else
+                System.out.println("No person found with this number");
+        } else
+            System.out.println("No records to delete");
     }
 
 }
