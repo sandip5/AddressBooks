@@ -192,7 +192,8 @@ public class ImplAddressBook implements IAddressBook {
         } else
             System.out.println("Less records to sort");
     }
-    public void sortByCity(){
+
+    public void sortByCity() {
         if (counter > 1) {
             System.out.println("Sorting by City name is selected");
             Collections.sort(persons, (e1, e2) -> String.valueOf(e1.getAddressObj().getCity())
@@ -208,7 +209,7 @@ public class ImplAddressBook implements IAddressBook {
             System.out.println("Less records to sort");
     }
 
-    public void sortByState(){
+    public void sortByState() {
         if (counter > 1) {
             System.out.println("Sorting by state name is selected");
             Collections.sort(persons, (e1, e2) -> String.valueOf(e1.getAddressObj().getState())
@@ -224,7 +225,7 @@ public class ImplAddressBook implements IAddressBook {
             System.out.println("Less records to sort");
     }
 
-    public void sortByZip(){
+    public void sortByZip() {
         if (counter > 1) {
             System.out.println("Sorting by zip");
             Collections.sort(persons, (e1, e2) -> String.valueOf(e1.getAddressObj().getZip())
@@ -240,27 +241,26 @@ public class ImplAddressBook implements IAddressBook {
         } else
             System.out.println("Less records to sort");
     }
-    public void searchByCityAndState(){
+
+    public void searchByCityAndState() {
         if (counter > 0) {
             System.out.println("Enter city:");
             String searchCity = scanner.next();
             System.out.println("Enter state:");
             String searchState = scanner.next();
-            indexOfPerson = 0;
+            int indexOfPerson = 0;
 
-                for (int i = 0; i < persons.size(); i++) {
-                    if (persons.contains(searchCity) && persons.contains(searchState)) {
+            for (int i = 0; i < persons.size(); i++) {
+                if (persons.get(i).getAddressObj().getState().equals(searchState)) {
+                    if (persons.get(i).getAddressObj().getCity().equals(searchCity)) {
                         indexOfPerson = i;
-                        break;
+                        System.out.println(persons.get(indexOfPerson).getFirstname() + " " + persons.get(indexOfPerson).getLastname() + " " + persons.get(indexOfPerson).getAddressObj().getAddressLocal()
+                                + " " + persons.get(indexOfPerson).getAddressObj().getCity() + " " + persons.get(indexOfPerson).getAddressObj().getState() + " "
+                                + persons.get(indexOfPerson).getAddressObj().getZip() + " " + persons.get(indexOfPerson).getMobile());
                     }
                 }
-                    System.out.println(persons.get(indexOfPerson).getFirstname() + " " + persons.get(indexOfPerson).getLastname() + " " + persons.get(indexOfPerson).getAddressObj().getAddressLocal()
-                            + " " + persons.get(indexOfPerson).getAddressObj().getCity() + " " + persons.get(indexOfPerson).getAddressObj().getState() + " "
-                            + persons.get(indexOfPerson).getAddressObj().getZip() + " " + persons.get(indexOfPerson).getMobile());
-
             }
         }
-
-
     }
+}
 
