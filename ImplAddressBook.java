@@ -69,6 +69,7 @@ public class ImplAddressBook implements IAddressBook {
                     break;
                 case 11:
                     searchByCityOrState();
+                    break;
                 default:
                     System.out.println("Invalid option");
             }
@@ -236,7 +237,6 @@ public class ImplAddressBook implements IAddressBook {
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             System.out.println("Sorting is completed to see the result select print option");
@@ -253,13 +253,11 @@ public class ImplAddressBook implements IAddressBook {
             int indexOfPerson = 0;
 
             for (int i = 0; i < persons.size(); i++) {
-                if (persons.get(i).getAddressObj().getState().equals(searchState)) {
-                    if (persons.get(i).getAddressObj().getCity().equals(searchCity)) {
+                if (persons.get(i).getAddressObj().getState().equals(searchState) && persons.get(i).getAddressObj().getCity().equals(searchCity)) {
                         indexOfPerson = i;
                         System.out.println(persons.get(indexOfPerson).getFirstname() + " " + persons.get(indexOfPerson).getLastname() + " " + persons.get(indexOfPerson).getAddressObj().getAddressLocal()
                                 + " " + persons.get(indexOfPerson).getAddressObj().getCity() + " " + persons.get(indexOfPerson).getAddressObj().getState() + " "
                                 + persons.get(indexOfPerson).getAddressObj().getZip() + " " + persons.get(indexOfPerson).getMobile());
-                    }
                 }
             }
         }
@@ -273,18 +271,11 @@ public class ImplAddressBook implements IAddressBook {
             String searchState = scanner.next();
             int indexOfPerson = 0;
             for (int i = 0; i < persons.size(); i++) {
-                if (persons.get(i).getAddressObj().getState().equals(searchState)) {
+                if (persons.get(i).getAddressObj().getState().equals(searchState) || persons.get(i).getAddressObj().getCity().equals(searchCity)) {
                     indexOfPerson = i;
                     System.out.println(persons.get(indexOfPerson).getFirstname() + " " + persons.get(indexOfPerson).getLastname() + " " + persons.get(indexOfPerson).getAddressObj().getAddressLocal()
                             + " " + persons.get(indexOfPerson).getAddressObj().getCity() + " " + persons.get(indexOfPerson).getAddressObj().getState() + " "
                             + persons.get(indexOfPerson).getAddressObj().getZip() + " " + persons.get(indexOfPerson).getMobile());
-                } else if (persons.get(i).getAddressObj().getCity().equals(searchCity)) {
-                    indexOfPerson = i;
-                    System.out.println(persons.get(indexOfPerson).getFirstname() + " " + persons.get(indexOfPerson).getLastname() + " " + persons.get(indexOfPerson).getAddressObj().getAddressLocal()
-                            + " " + persons.get(indexOfPerson).getAddressObj().getCity() + " " + persons.get(indexOfPerson).getAddressObj().getState() + " "
-                            + persons.get(indexOfPerson).getAddressObj().getZip() + " " + persons.get(indexOfPerson).getMobile());
-                } else {
-                    System.out.println("neither state match nor city");
                 }
             }
         }
