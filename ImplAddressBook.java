@@ -253,13 +253,11 @@ public class ImplAddressBook implements IAddressBook {
             int indexOfPerson = 0;
 
             for (int i = 0; i < persons.size(); i++) {
-                if (persons.get(i).getAddressObj().getState().equals(searchState)) {
-                    if (persons.get(i).getAddressObj().getCity().equals(searchCity)) {
+                if (persons.get(i).getAddressObj().getState().equals(searchState) && persons.get(i).getAddressObj().getCity().equals(searchCity)) {
                         indexOfPerson = i;
                         System.out.println(persons.get(indexOfPerson).getFirstname() + " " + persons.get(indexOfPerson).getLastname() + " " + persons.get(indexOfPerson).getAddressObj().getAddressLocal()
                                 + " " + persons.get(indexOfPerson).getAddressObj().getCity() + " " + persons.get(indexOfPerson).getAddressObj().getState() + " "
                                 + persons.get(indexOfPerson).getAddressObj().getZip() + " " + persons.get(indexOfPerson).getMobile());
-                    }
                 }
             }
         }
