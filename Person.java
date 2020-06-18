@@ -11,7 +11,7 @@ public class Person {
     private String lastname;
     private Address addressObj;
     private Long mobile;
-
+    //use of POJO Class by getter and setter
     public String getFirstname() {
         return firstname;
     }

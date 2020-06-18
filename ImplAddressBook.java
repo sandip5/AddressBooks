@@ -3,13 +3,13 @@ package com.bridgelab.addressbook;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
-
+//ImplAddressBook Class implements IAddressBook interface
 public class ImplAddressBook implements IAddressBook {
     Scanner scanner = new Scanner(System.in);
     int counter = 0;
     int indexOfPerson;
     static ArrayList<Person> persons = new ArrayList<Person>();
-
+    //Method to print persons details
     public static void printPersonDetails(ArrayList<Person> persons) {
         persons.forEach(i -> {
             System.out.println(i.getFirstname() + " " + i.getLastname() + " " + i.getAddressObj().getAddressLocal()
@@ -17,7 +17,7 @@ public class ImplAddressBook implements IAddressBook {
                     + i.getAddressObj().getZip() + " " + i.getMobile());
         });
     }
-
+    //Method for showing different option
     @Override
     public void openAddressBook() {
         System.out.println("-----------------------Open Address Book-----------------------");
@@ -76,7 +76,7 @@ public class ImplAddressBook implements IAddressBook {
         }
 
     }
-
+    //Method for adding person
     @Override
     public void addPerson() {
 
@@ -121,7 +121,7 @@ public class ImplAddressBook implements IAddressBook {
             System.out.println("Duplicate entry of person's name not allowed...");
         }
     }
-
+    //Method for edit person details
     @Override
     public void editPerson() {
         if (counter > 0) {
@@ -154,7 +154,7 @@ public class ImplAddressBook implements IAddressBook {
         } else
             System.out.println("There is no record to edit");
     }
-
+    //Method for delete person by person name
     @Override
     public void deletePerson() {
         if (counter > 0) {
@@ -179,7 +179,7 @@ public class ImplAddressBook implements IAddressBook {
         } else
             System.out.println("No records to delete");
     }
-
+    //Method for sorting persons list according to name
     @Override
     public void sortByName() {
         if (counter > 1) {
@@ -195,7 +195,7 @@ public class ImplAddressBook implements IAddressBook {
         } else
             System.out.println("Less records to sort");
     }
-
+    //Method for sorting persons list according to city
     public void sortByCity() {
         if (counter > 1) {
             System.out.println("Sorting by City name is selected");
@@ -211,7 +211,7 @@ public class ImplAddressBook implements IAddressBook {
         } else
             System.out.println("Less records to sort");
     }
-
+    //Method for sorting persons list according to state
     public void sortByState() {
         if (counter > 1) {
             System.out.println("Sorting by state name is selected");
@@ -227,7 +227,7 @@ public class ImplAddressBook implements IAddressBook {
         } else
             System.out.println("Less records to sort");
     }
-
+    //Method for sorting persons list according to zip
     public void sortByZip() {
         if (counter > 1) {
             System.out.println("Sorting by zip");
@@ -243,7 +243,7 @@ public class ImplAddressBook implements IAddressBook {
         } else
             System.out.println("Less records to sort");
     }
-
+    //Method for searching person by using city and state
     public void searchByCityAndState() {
         if (counter > 0) {
             System.out.println("Enter city:");
@@ -262,7 +262,7 @@ public class ImplAddressBook implements IAddressBook {
             }
         }
     }
-
+    //Method for searching person by using city or state
     public void searchByCityOrState() {
         if (counter > 0) {
             System.out.println("Enter city:");
