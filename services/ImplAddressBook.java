@@ -1,4 +1,8 @@
-package com.bridgelab.addressbook;
+package com.bridgelab.addressbook.services;
+
+import com.bridgelab.addressbook.main.IAddressBook;
+import com.bridgelab.addressbook.model.Address;
+import com.bridgelab.addressbook.model.Person;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -76,10 +80,13 @@ public class ImplAddressBook implements IAddressBook {
         }
 
     }
-    //Method for adding person
+
+    /**
+     * Method for adding person
+     *
+     */
     @Override
     public void addPerson() {
-
         boolean isFoundPerson = true;
         if (counter > 0) {
             System.out.println("Enter Persons First name:");

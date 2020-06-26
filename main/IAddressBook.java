@@ -1,4 +1,4 @@
-package com.bridgelab.addressbook;
+package com.bridgelab.addressbook.main;
 
 public interface IAddressBook {
     void addPerson();
