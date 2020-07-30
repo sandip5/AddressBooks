@@ -1,4 +1,4 @@
-package com.bridgelab.addressbook.main;
+package com.bridgelab.addressbook.controller;
 
 import com.bridgelab.addressbook.services.ImplAddressBook;
 

@@ -1,39 +1,20 @@
 package com.bridgelab.addressbook.model;
 
 public class Person {
-    @Override
-    public String toString() {
-        return "Person [firstname=" + firstname + ", lastname=" + lastname + ", addressObj=" + addressObj + ", mobile="
-                + mobile + "]";
-    }
-
-    private String firstname;
-    private String lastname;
-    private Address addressObj;
+    private String name;
+//    private String lastName;
+//    private Address addressObj;
     private Long mobile;
+    private String city;
+    private String state;
+    private int zip;
     //use of POJO Class by getter and setter
-    public String getFirstname() {
-        return firstname;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public Address getAddressObj() {
-        return addressObj;
-    }
-
-    public void setAddressObj(Address addressObj) {
-        this.addressObj = addressObj;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Long getMobile() {
@@ -42,5 +23,48 @@ public class Person {
 
     public void setMobile(Long mobile) {
         this.mobile = mobile;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public int getZip() {
+        return zip;
+    }
+
+    public void setZip(int zip) {
+        this.zip = zip;
+    }
+
+
+
+    public String getCOMMON_PATTERN() {
+        return "^[A-Z]{1}[a-z]{2,}$";
+    }
+
+    public String getZIP_PATTERN() {
+        return "^[1-9][0-9]{5}$";
+    }
+
+    public String getPHONE_NUMBER_PATTERN() {
+        return "^[1-9][0-9]{9}$";
+    }
+    @Override
+    public String toString() {
+        return "Person [name=" + name + ", mobile=" + mobile +
+                ", city=" + city + ", state=" + state + ", zip=" + zip + "]";
     }
 }

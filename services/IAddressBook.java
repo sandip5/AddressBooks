@@ -1,4 +1,4 @@
-package com.bridgelab.addressbook.main;
+package com.bridgelab.addressbook.services;
 
 public interface IAddressBook {
     void addPerson();
@@ -11,5 +11,4 @@ public interface IAddressBook {
     void sortByZip();
     void searchByCityAndState();
     void searchByCityOrState();
-
 }
