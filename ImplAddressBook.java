@@ -1,21 +1,19 @@
 package com.bridgelab.addressbook;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class ImplAddressBook implements IAddressBook {
     Scanner scanner = new Scanner(System.in);
     int counter = 0;
     int indexOfPerson;
-    static ArrayList<Person> persons = new ArrayList<Person>();
+    static ArrayList<Person> persons = new ArrayList<>();
 
     public static void printPersonDetails(ArrayList<Person> persons) {
-        persons.forEach(i -> {
-            System.out.println(i.getFirstname() + " " + i.getLastname() + " " + i.getAddressObj().getAddressLocal()
-                    + " " + i.getAddressObj().getCity() + " " + i.getAddressObj().getState() + " "
-                    + i.getAddressObj().getZip() + " " + i.getMobile());
-        });
+        persons.forEach(i -> System.out.println(i.getFirstname() + " " + i.getLastname() + " " + i.getAddressObj().getAddressLocal()
+                + " " + i.getAddressObj().getCity() + " " + i.getAddressObj().getState() + " "
+                + i.getAddressObj().getZip() + " " + i.getMobile()));
     }
 
     @Override
@@ -184,7 +182,7 @@ public class ImplAddressBook implements IAddressBook {
     public void sortByName() {
         if (counter > 1) {
             System.out.println("Sorting by Last name is selected");
-            Collections.sort(persons, (e1, e2) -> e1.getFirstname().compareTo(e2.getFirstname()));
+            persons.sort(Comparator.comparing(Person::getFirstname));
             System.out.println("Please wait...");
             try {
                 Thread.sleep(2000);
@@ -199,8 +197,7 @@ public class ImplAddressBook implements IAddressBook {
     public void sortByCity() {
         if (counter > 1) {
             System.out.println("Sorting by City name is selected");
-            Collections.sort(persons, (e1, e2) -> String.valueOf(e1.getAddressObj().getCity())
-                    .compareTo(String.valueOf(e2.getAddressObj().getCity())));
+            persons.sort(Comparator.comparing(e -> String.valueOf(e.getAddressObj().getCity())));
             System.out.println("Please wait...");
             try {
                 Thread.sleep(2000);
@@ -215,8 +212,7 @@ public class ImplAddressBook implements IAddressBook {
     public void sortByState() {
         if (counter > 1) {
             System.out.println("Sorting by state name is selected");
-            Collections.sort(persons, (e1, e2) -> String.valueOf(e1.getAddressObj().getState())
-                    .compareTo(String.valueOf(e2.getAddressObj().getState())));
+            persons.sort(Comparator.comparing(e -> String.valueOf(e.getAddressObj().getState())));
             System.out.println("Please wait...");
             try {
                 Thread.sleep(2000);
@@ -231,8 +227,7 @@ public class ImplAddressBook implements IAddressBook {
     public void sortByZip() {
         if (counter > 1) {
             System.out.println("Sorting by zip");
-            Collections.sort(persons, (e1, e2) -> String.valueOf(e1.getAddressObj().getZip())
-                    .compareTo(String.valueOf(e2.getAddressObj().getZip())));
+            persons.sort(Comparator.comparing(e -> String.valueOf(e.getAddressObj().getZip())));
             System.out.println("Please wait...");
             try {
                 Thread.sleep(2000);
@@ -250,7 +245,7 @@ public class ImplAddressBook implements IAddressBook {
             String searchCity = scanner.next();
             System.out.println("Enter state:");
             String searchState = scanner.next();
-            int indexOfPerson = 0;
+            int indexOfPerson;
 
             for (int i = 0; i < persons.size(); i++) {
                 if (persons.get(i).getAddressObj().getState().equals(searchState) && persons.get(i).getAddressObj().getCity().equals(searchCity)) {
@@ -269,7 +264,7 @@ public class ImplAddressBook implements IAddressBook {
             String searchCity = scanner.next();
             System.out.println("Enter state:");
             String searchState = scanner.next();
-            int indexOfPerson = 0;
+            int indexOfPerson;
             for (int i = 0; i < persons.size(); i++) {
                 if (persons.get(i).getAddressObj().getState().equals(searchState) || persons.get(i).getAddressObj().getCity().equals(searchCity)) {
                     indexOfPerson = i;
