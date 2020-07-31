@@ -228,7 +228,11 @@ public class ImplAddressBook implements IAddressBook {
         });
     }
 
-    public void getList() {
-        new IoOperation().writeListToFile(persons);
+    public void readJsonFile() {
+        new IoOperation().writeJsonToFile(persons);
+    }
+
+    public void readCSVFile() {
+        new IoOperation().writeCsvToFile(persons);
     }
 }

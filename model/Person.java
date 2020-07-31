@@ -1,13 +1,24 @@
 package com.bridgelab.addressbook.model;
 
+import com.opencsv.bean.CsvBindByName;
+
 public class Person {
+
+    @CsvBindByName(required = true, column = "name")
     private String name;
-//    private String lastName;
-//    private Address addressObj;
+
+    @CsvBindByName(required = true, column = "mobile")
     private Long mobile;
+
+    @CsvBindByName(required = true, column = "city")
     private String city;
+
+    @CsvBindByName(required = true, column = "state")
     private String state;
+
+    @CsvBindByName(required = true, column = "zip")
     private int zip;
+
     //use of POJO Class by getter and setter
     public String getName() {
         return name;

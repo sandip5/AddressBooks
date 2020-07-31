@@ -20,12 +20,20 @@ public class AddressBookMain {
     public void openAddressBook() {
         Scanner scanner = new Scanner(System.in);
         ImplAddressBook util = new ImplAddressBook();
-        System.out.println("Enter 1 to read data from file");
-        int valuessssss = scanner.nextInt();
-        if (1 == valuessssss) {
+        System.out.println("Select option: \n1.Read File Using Simple Json" +
+                "\n2.Read File Using OpenCSV" +
+                "\n3.Do Operation In Empty List");
+        int select = scanner.nextInt();
+        if (1 == select) {
             ArrayList<Person> addressBookList = new IoOperation().readFromJson();
             util.setList(addressBookList);
-        } else {
+        }
+        if (2 == select) {
+            ArrayList<Person> addressBookList;
+            addressBookList = new IoOperation().readFromCSV();
+            util.setList(addressBookList);
+        }
+        if (3 == select) {
             ArrayList<Person> addressBookList = new ArrayList<>();
             util.setList(addressBookList);
         }
@@ -44,7 +52,8 @@ public class AddressBookMain {
                             "\n9.sort by zip" +
                             "\n10.search by city and state" +
                             "\n11.search by city or state" +
-                            "\n12. write file");
+                            "\n12. write JSON file" +
+                            "\n13. Write CSV File");
             switch (scanner.nextInt()) {
                 case 1:
                     util.addPerson();
@@ -80,8 +89,10 @@ public class AddressBookMain {
                     util.searchByCityOrState();
                     break;
                 case 12:
-                    util.getList();
+                    util.readJsonFile();
                     break;
+                case 13:
+                    util.readCSVFile();
                 default:
                     System.out.println("Invalid option");
                     break;
