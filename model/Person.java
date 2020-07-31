@@ -49,7 +49,9 @@ public class Person {
         this.zip = zip;
     }
 
-
+    public String getNAME_PATTERN() {
+        return "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{2,}$";
+    }
 
     public String getCOMMON_PATTERN() {
         return "^[A-Z]{1}[a-z]{2,}$";
@@ -62,6 +64,7 @@ public class Person {
     public String getPHONE_NUMBER_PATTERN() {
         return "^[1-9][0-9]{9}$";
     }
+
     @Override
     public String toString() {
         return "Person [name=" + name + ", mobile=" + mobile +
