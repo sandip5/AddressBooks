@@ -22,7 +22,8 @@ public class AddressBookMain {
         ImplAddressBook util = new ImplAddressBook();
         System.out.println("Select option: \n1.Read File Using Simple Json" +
                 "\n2.Read File Using OpenCSV" +
-                "\n3.Do Operation In Empty List");
+                "\n3.Read File Using Gson" +
+                "\n4.Do Operation In Empty List");
         int select = scanner.nextInt();
         if (1 == select) {
             ArrayList<Person> addressBookList = new IoOperation().readFromJson();
@@ -34,6 +35,11 @@ public class AddressBookMain {
             util.setList(addressBookList);
         }
         if (3 == select) {
+            ArrayList<Person> addressBookList;
+            addressBookList = new IoOperation().readFromGson();
+            util.setList(addressBookList);
+        }
+        if (4 == select) {
             ArrayList<Person> addressBookList = new ArrayList<>();
             util.setList(addressBookList);
         }
@@ -52,8 +58,9 @@ public class AddressBookMain {
                             "\n9.sort by zip" +
                             "\n10.search by city and state" +
                             "\n11.search by city or state" +
-                            "\n12. write JSON file" +
-                            "\n13. Write CSV File");
+                            "\n12.write JSON file" +
+                            "\n13.Write CSV File" +
+                            "\n14.write JSON File Using Gson");
             switch (scanner.nextInt()) {
                 case 1:
                     util.addPerson();
@@ -89,10 +96,14 @@ public class AddressBookMain {
                     util.searchByCityOrState();
                     break;
                 case 12:
-                    util.readJsonFile();
+                    util.writeFileUsingJsonSimple();
                     break;
                 case 13:
-                    util.readCSVFile();
+                    util.writeCSVFileUsingOpenCsv();
+                    break;
+                case 14:
+                    util.writeFileUsingGson();
+                    break;
                 default:
                     System.out.println("Invalid option");
                     break;

@@ -1,6 +1,8 @@
 package com.bridgelab.addressbook.utility;
 
 import com.bridgelab.addressbook.model.Person;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
@@ -17,10 +19,16 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 
+@SuppressWarnings("ALL")
 public class IoOperation {
-    String FILE_PATH_JSON = "C:\\Users\\aple\\IdeaProjects\\AddressBook\\src\\main\\resources\\AddressBook.json";
-    String FILE_PATH_CSV = "C:\\Users\\aple\\IdeaProjects\\AddressBook\\src\\main\\resources\\AddressBook.csv";
+    String FILE_PATH_JSON =
+            "C:\\Users\\aple\\IdeaProjects\\AddressBook\\src\\main\\resources\\AddressBook.json";
+    String FILE_PATH_CSV =
+            "C:\\Users\\aple\\IdeaProjects\\AddressBook\\src\\main\\resources\\AddressBook.csv";
+    String FILE_PATH_GSON =
+            "C:\\Users\\aple\\IdeaProjects\\AddressBook\\src\\main\\resources\\AddressBookGson.json";
 
     public void writeJsonToFile(ArrayList<Person> persons) {
         JSONArray personList = new JSONArray();
@@ -96,6 +104,28 @@ public class IoOperation {
                     .build();
             beanToCsv.write(persons);
         } catch (IOException | CsvDataTypeMismatchException | CsvRequiredFieldEmptyException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<Person> readFromGson() {
+        ArrayList<Person> addressBookList = null;
+        try {
+            Person[] addressBookDetails = new Gson()
+                    .fromJson(new FileReader(FILE_PATH_GSON), Person[].class);
+            addressBookList = new ArrayList<>(Arrays.asList(addressBookDetails));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return addressBookList;
+    }
+
+    public void writeJsonFileUsingGson(ArrayList<Person> persons) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(persons);
+        try (FileWriter writer = new FileWriter(FILE_PATH_GSON)) {
+            writer.write(json);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
