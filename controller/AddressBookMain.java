@@ -13,7 +13,6 @@ public class AddressBookMain {
     public static void main(String[] args) {
         System.out.println("Welcome to Address Book");
         AddressBookMain addressBookMain = new AddressBookMain();
-
         addressBookMain.openAddressBook();
     }
 
@@ -21,14 +20,14 @@ public class AddressBookMain {
         Scanner scanner = new Scanner(System.in);
         ImplAddressBook util = new ImplAddressBook();
         System.out.println("Enter 1 to read data from file");
-        int valuessssss = scanner.nextInt();
-        if (1 == valuessssss) {
-            ArrayList<Person> addressBookList = new IoOperation().readFromJson();
-            util.setList(addressBookList);
+        int value = scanner.nextInt();
+        ArrayList<Person> addressBookList;
+        if (1 == value) {
+            addressBookList = new IoOperation().readFromJson();
         } else {
-            ArrayList<Person> addressBookList = new ArrayList<>();
-            util.setList(addressBookList);
+            addressBookList = new ArrayList<>();
         }
+        util.setList(addressBookList);
         System.out.println("-----------------------Open Address Book-----------------------");
         AtomicBoolean close = new AtomicBoolean(false);
         while (!close.get()) {
