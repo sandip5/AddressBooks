@@ -18,6 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+@SuppressWarnings("ALL")
 public class IoOperation {
     String FILE_PATH_JSON = "C:\\Users\\aple\\IdeaProjects\\AddressBook\\src\\main\\resources\\AddressBook.json";
     String FILE_PATH_CSV = "C:\\Users\\aple\\IdeaProjects\\AddressBook\\src\\main\\resources\\AddressBook.csv";
