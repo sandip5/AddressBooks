@@ -9,11 +9,9 @@ import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class AddressBookMain {
-
     public static void main(String[] args) {
         System.out.println("Welcome to Address Book");
         AddressBookMain addressBookMain = new AddressBookMain();
-
         addressBookMain.openAddressBook();
     }
 
@@ -26,17 +24,15 @@ public class AddressBookMain {
                 "\n4.Do Operation In Empty List");
         int select = scanner.nextInt();
         if (1 == select) {
-            ArrayList<Person> addressBookList = new IoOperation().readFromJson();
+            ArrayList<Person> addressBookList = new IoOperation().readFromJsonUsingSimpleJson();
             util.setList(addressBookList);
         }
         if (2 == select) {
-            ArrayList<Person> addressBookList;
-            addressBookList = new IoOperation().readFromCSV();
+            ArrayList<Person> addressBookList = new IoOperation().readFromCSV();
             util.setList(addressBookList);
         }
         if (3 == select) {
-            ArrayList<Person> addressBookList;
-            addressBookList = new IoOperation().readFromGson();
+            ArrayList<Person> addressBookList = new IoOperation().readFromJsonUsingGson();
             util.setList(addressBookList);
         }
         if (4 == select) {

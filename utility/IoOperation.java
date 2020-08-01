@@ -52,7 +52,7 @@ public class IoOperation {
         }
     }
 
-    public ArrayList<Person> readFromJson() {
+    public ArrayList<Person> readFromJsonUsingSimpleJson() {
         JSONParser jsonParser = new JSONParser();
         ArrayList<Person> addressBookList = new ArrayList<>();
         try (FileReader reader = new FileReader(FILE_PATH_JSON)) {
@@ -96,9 +96,7 @@ public class IoOperation {
     }
 
     public void writeCsvToFile(ArrayList<Person> persons) {
-        try (
-                Writer writer = Files.newBufferedWriter(Paths.get(FILE_PATH_CSV))
-        ) {
+        try (Writer writer = Files.newBufferedWriter(Paths.get(FILE_PATH_CSV))) {
             StatefulBeanToCsv beanToCsv = new StatefulBeanToCsvBuilder(writer)
                     .withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
                     .build();
@@ -108,7 +106,7 @@ public class IoOperation {
         }
     }
 
-    public ArrayList<Person> readFromGson() {
+    public ArrayList<Person> readFromJsonUsingGson() {
         ArrayList<Person> addressBookList = null;
         try {
             Person[] addressBookDetails = new Gson()
