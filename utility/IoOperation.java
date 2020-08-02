@@ -23,11 +23,11 @@ import java.util.Arrays;
 
 @SuppressWarnings("ALL")
 public class IoOperation {
-    String FILE_PATH_JSON =
+    private String FILE_PATH_JSON =
             "C:\\Users\\aple\\IdeaProjects\\AddressBook\\src\\main\\resources\\AddressBook.json";
-    String FILE_PATH_CSV =
+    private String FILE_PATH_CSV =
             "C:\\Users\\aple\\IdeaProjects\\AddressBook\\src\\main\\resources\\AddressBook.csv";
-    String FILE_PATH_GSON =
+    private String FILE_PATH_GSON =
             "C:\\Users\\aple\\IdeaProjects\\AddressBook\\src\\main\\resources\\AddressBookGson.json";
 
     public void writeJsonToFile(ArrayList<Person> persons) {
@@ -96,9 +96,7 @@ public class IoOperation {
     }
 
     public void writeCsvToFile(ArrayList<Person> persons) {
-        try (
-                Writer writer = Files.newBufferedWriter(Paths.get(FILE_PATH_CSV))
-        ) {
+        try (Writer writer = Files.newBufferedWriter(Paths.get(FILE_PATH_CSV))) {
             StatefulBeanToCsv beanToCsv = new StatefulBeanToCsvBuilder(writer)
                     .withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
                     .build();

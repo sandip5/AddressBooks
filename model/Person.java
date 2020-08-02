@@ -3,7 +3,6 @@ package com.bridgelab.addressbook.model;
 import com.opencsv.bean.CsvBindByName;
 
 public class Person {
-
     @CsvBindByName(required = true, column = "name")
     private String name;
 
@@ -58,22 +57,6 @@ public class Person {
 
     public void setZip(int zip) {
         this.zip = zip;
-    }
-
-    public String getNAME_PATTERN() {
-        return "^[A-Za-z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{2,}$";
-    }
-
-    public String getCOMMON_PATTERN() {
-        return "^[A-Z]{1}[a-z]{2,}$";
-    }
-
-    public String getZIP_PATTERN() {
-        return "^[1-9][0-9]{5}$";
-    }
-
-    public String getPHONE_NUMBER_PATTERN() {
-        return "^[1-9][0-9]{9}$";
     }
 
     @Override
