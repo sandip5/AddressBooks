@@ -52,7 +52,7 @@ public class IoOperation {
         }
     }
 
-    public ArrayList<Person> readFromJsonUsingSimpleJson() {
+    public ArrayList<Person> readFromJson() {
         JSONParser jsonParser = new JSONParser();
         ArrayList<Person> addressBookList = new ArrayList<>();
         try (FileReader reader = new FileReader(FILE_PATH_JSON)) {
@@ -106,7 +106,7 @@ public class IoOperation {
         }
     }
 
-    public ArrayList<Person> readFromJsonUsingGson() {
+    public ArrayList<Person> readFromGson() {
         ArrayList<Person> addressBookList = null;
         try {
             Person[] addressBookDetails = new Gson()
@@ -128,4 +128,3 @@ public class IoOperation {
         }
     }
 }
-
